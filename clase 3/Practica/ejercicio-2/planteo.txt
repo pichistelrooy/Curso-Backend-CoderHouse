@@ -1,0 +1,1 @@
+Crear la función escribirEnArchivo que reciba un nombre de archivo y un texto a escribir. Esta función debe devolver una promesa que se completará cuando el archivo termine de escribirse.
