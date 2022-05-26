@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Personas</title>
+  </head>
+  <body>
+    <h1>Agregar personas</h1>
+    <form action="/personas" method="post">
+      <input type="text" name="nombre"/>
+      <input type="text" name="apellido"/>
+      <input type="number" name="edad"/>
+      <button type="submit">Enviar</button>
+    </form>
+    <hr/>
+    <% if (personas.length) { %>
+      <table>
+        <thead>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Edad</th>
+        </thead>
+        <tbody>
+          <% personas.forEach((persona) => { %>
+            <tr>
+              <td><%=persona.nombre %></td>
+              <td><%=persona.apellido %></td>
+              <td><%=persona.edad %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No hay datos</p>
+    <% } %>
+  </body>
+</html>

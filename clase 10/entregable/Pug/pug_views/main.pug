@@ -1,0 +1,25 @@
+extends index.pug 
+
+block contenido 
+    header.p-3.bg-dark.text-white.text-center 
+        h1 Productos Agregados(Pug)
+
+    if productos.length > 0
+        table.table.table-primary.table-striped-columns
+            thead
+                th ID
+                th Title
+                th Price
+                th Thumbnail
+            tbody
+                each producto in productos
+                    tr
+                        td= producto.id
+                        td= producto.title
+                        td= '$' + producto.price
+                        td 
+                            img(style="width: 50px; height:50px" src=producto.thumbnail)
+    else 
+        h2 No hay productos agregados
+    <button class="btn btn-success" onClick="redirect()">Cargar Productos</button>
+    <script type="text/javascript">function redirect(){window.location.href="/";}</script>

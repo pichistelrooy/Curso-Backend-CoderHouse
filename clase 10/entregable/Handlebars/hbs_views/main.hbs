@@ -1,0 +1,23 @@
+<header class="p-3 bg-dark text-white text-center"><h1>Productos agregados(Handlebars)</h1></header>
+{{#if productos}}
+<table class="table table-success table-striped-columns">
+    <thead>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Thumbnail</th>
+    </thead>
+    <tbody>
+        {{#each productos}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>$ {{price}}</td>
+            <td><img style="width: 50px; height:50px" src={{thumbnail}} alt=""></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<h2>No hay productos</h2>
+{{/if}}

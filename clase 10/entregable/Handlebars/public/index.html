@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Handlebars</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  
+  <div class="container">
+    <body>      
+      <form action='/productos' method="post">
+        <div class="card">
+          <div class="card-header text-center" style="background-color: #f8f9c5">
+            Carga de productos
+          </div>
+          <div class="card-body" style="background-color: #ffcef8">
+            <div class="col-4">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" name="title" class="form-control"/>
+            </div>   
+            <div class="col-2">
+              <label for="price" class="form-label">Price</label>
+              <input type="input" name="price" class="form-control" aria-describedby="priceHelp"/>
+              <div id="priceHelp" class="form-text" style="color: red">*Price in dollars</div>
+            </div>   
+            <div class="col-12">
+              <label for="thumbnail">Thumbnail</label>
+              <input type="input" name="thumbnail" class="form-control"/>
+            </div> 
+            <div class="card-footer text-center">
+              <button class="btn btn-primary text-center" type="submit">Enviar</button>               
+            </div>
+          </div>                                                                 
+        </div>                       
+      </form> 
+      <div class="card-footer text-center" style="background-color: #c5d8f9">
+        <button class="btn btn-success" onClick="redirect()">Ver Productos</button>  
+      </div>          
+    </body>
+  </div>    
+  
+  <script type="text/javascript">
+    function redirect(){
+      window.location.href="/productos";
+    }
+  </script>
+</html>
