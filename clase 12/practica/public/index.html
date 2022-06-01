@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title>Aplicacion Chat</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div id="messages"></div>
+    <form onsubmit="return enviarMensaje()">
+      <input type="text" id="author"/>
+      <input type="text" id="text"/>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  </body>
+</html>

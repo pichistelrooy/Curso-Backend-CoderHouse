@@ -1,0 +1,61 @@
+<div class="container">
+  <body>
+    <form onsubmit="return cargarProducto()">
+      <div class="card">
+        <div class="card-header text-center" style="background-color: #f8f9c5">
+          Carga de productos
+        </div>
+        <div class="card-body" style="background-color: #ffcef8">
+          <div class="col-4">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" id="title" class="form-control" />
+          </div>
+          <div class="col-2">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="input"
+              name="price"
+              id="price"
+              class="form-control"
+              aria-describedby="priceHelp"
+            />
+            <div id="priceHelp" class="form-text" style="color: red">*Price in
+              dollars</div>
+          </div>
+          <div class="col-12">
+            <label for="thumbnail">Thumbnail</label>
+            <input
+              type="input"
+              name="thumbnail"
+              id="thumbnail"
+              class="form-control"
+            />
+          </div>
+          <div class="card-footer text-center">
+            <button
+              class="btn btn-primary text-center"
+              type="submit"
+            >Agregar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+
+  <!-- aca te meustro las 2 maneras, la que queria suar n oanda, q es el table.hds en partials-->
+  <!-- el primero funciona bien ,con el emit del socket reemplazo el id products. el otro, sol ocuando actualizo la pag, y es l oq quiero entregar... ajja -->
+  <body>
+    Productos cargados
+    <div id="products"></div>    
+    {{> table productos=listadoProductos}}
+  </body>
+
+  <body>Centro de Mensajes
+    <div id="messages"></div>
+    <form onsubmit="return enviarMensaje()">
+      <input type="text" id="author" />
+      <input type="text" id="text" />
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  </body>
+</div>
