@@ -1,1 +1,0 @@
-El Formato que personalmente me gusto mas es Handlebars, lo veo mucho mas simple de entender, mas intuitivo y facil de construir.
