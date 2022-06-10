@@ -7,6 +7,7 @@
 * get("/")                                  -- Devuelve todos los productos
 * get("/:id")                               -- Devuelve un producto por su ID
 * post("/")                                 -- Guarda un producto(implementa seguridad via Middleware de Admin)
+  
   {
     name:coffe
     price:2.3
@@ -17,6 +18,7 @@
     isAdmin:1
   } 
 * put("/:id")                               -- Actualiza un producto por su ID(implementa seguridad via Middleware de Admin)
+  
   {
     name:hamburguesas 4u
     price:15.54
@@ -27,6 +29,7 @@
     isAdmin:1
   }
 * delete("/:id")                            -- elimina un producto por su ID(implementa seguridad via Middleware de Admin)
+  
   {
     isAdmin:1
   }
@@ -40,6 +43,7 @@
 * post("/")                                 -- Guarda un carrito
 * delete("/:id")                            -- elimina un carrito por su ID
 * post("/:id/productos")                    -- guarda un producto en un carrito por su ID
+  
   {
     id:2
   }
