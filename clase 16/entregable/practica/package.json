@@ -1,0 +1,23 @@
+{
+  "name": "entregable",
+  "version": "1.0.0",
+  "description": "El Formato que personalmente me gusto mas es Handlebars, lo veo mucho mas simple de entender, mas intuitivo y facil de construir.",
+  "main": "servidor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "knex": "^2.1.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16",
+    "socket.io": "^4.5.1",
+    "sqlite3": "^5.0.8"
+  },
+  "devDependencies": {}
+}

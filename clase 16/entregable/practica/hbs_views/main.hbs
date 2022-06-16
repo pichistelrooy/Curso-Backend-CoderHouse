@@ -1,0 +1,58 @@
+<div class="container">
+
+  <body>
+    <form onsubmit="return cargarProducto()" id="miForm">
+      <div class="card">
+        <div class="card-header text-center" style="background-color: #f8f9c5">
+          Carga de productos
+        </div>
+        <div class="card-body" style="background-color: #ffcef8">
+          <div class="col-4">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" id="title" class="form-control" />
+          </div>
+          <div class="col-2">
+            <label for="price" class="form-label">Price</label>
+            <input type="input" name="price" id="price" class="form-control" aria-describedby="priceHelp" />
+            <div id="priceHelp" class="form-text" style="color: red">*Price in
+              dollars</div>
+          </div>
+          <div class="col-12">
+            <label for="thumbnail">Thumbnail</label>
+            <input type="input" name="thumbnail" id="thumbnail" class="form-control" />
+          </div>
+          <div class="card-footer text-center">
+            <button class="btn btn-primary text-center" type="submit">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+
+  <body>
+    <div id="products"></div>
+  </body>
+
+  <body>
+    <form onsubmit="return enviarMensaje()">
+      <div class="card">
+        <div class="card-header text-center" style="background-color: #f8f9c5">
+          Centro de Mensajes
+        </div>
+        <div id="messages"></div>
+        <div class="card-body" style="background-color: #ffcef8">
+          <div class="col-4">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" name="email" id="email" required class="form-control"/>
+          </div>
+          <div class="col-6">
+            <label for="message" class="form-label">Message</label>
+            <input type="text" name="message" id="message" required class="form-control"/>
+          </div>
+          <div class="card-footer text-center">
+            <button class="btn btn-primary text-center" type="submit">Enviar Mensaje</button>
+          </div>
+        </div>
+    </form>
+  </body>
+</div>
