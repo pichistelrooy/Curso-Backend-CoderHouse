@@ -85,24 +85,10 @@ class CarritoDaoMongoDB {
 
   async deleteProductToCart(cart_id, product_id) {
     let result = false;
-    const memory = new ContenedorMemory();
-    let listadoCarritos = await memory.getAllCarts();
-
-    listadoCarritos.forEach((cart) => {
-      if (cart.id == cart_id) {
-        const listaAux = cart.productos.filter((producto) => {
-          return producto.id != product_id;
-        });
-
-        if (listaAux.length != cart.productos.length) {
-          cart.productos = listaAux;
-          result = true;
-        }
-      }
-    });
-
-    if (result == true) {
-      await memory.saveAllCart(listadoCarritos);
+    const mongo = new ContenedorMongoDB();
+    const res = await mongo.deleteProductFromCart(carritoSchema, "carrito", cart_id, product_id);    
+    if(res.modifiedCount == 1) {
+      result = true;
     }
 
     return result;
