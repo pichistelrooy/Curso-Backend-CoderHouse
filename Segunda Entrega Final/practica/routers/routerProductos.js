@@ -1,12 +1,23 @@
+require('dotenv').config();
+
 const express = require("express");
 const productRouter = express.Router();
 
 productRouter.use(express.json());
 productRouter.use(express.urlencoded({ extended: true }));
 
-//const DaoProductos = require("./../dao/producto/ProductoDaoFileData");
-//const DaoProductos = require("./../dao/producto/ProductoDaoMemory");
-const DaoProductos = require("./../dao/producto/ProductoDaoMongoDB");
+let DaoProductos = '';
+function obtenerAPI(){
+  if(process.env.API == "MEMORY") {
+    DaoProductos = require("./../dao/producto/ProductoDaoMemory");
+  } else if(process.env.API == "FILEDATA") {
+    DaoProductos = require("./../dao/producto/ProductoDaoFileData");
+  } else if(process.env.API == "MONGODB"){
+    DaoProductos = require("./../dao/producto/ProductoDaoMongoDB");
+  } else{
+    DaoProductos = require("./../dao/producto/ProductoDaoFirebase");
+  };
+}
 
 const middlewareAutorizacion = (req, res, next) => {
   if (req.body.isAdmin > 0) next();
@@ -14,12 +25,14 @@ const middlewareAutorizacion = (req, res, next) => {
 };
 
 productRouter.get("/", async (req, res) => {
+  obtenerAPI()
   const productos = new DaoProductos();
   const listadoProductos = await productos.getAllProducts();
   res.send({ productos: listadoProductos });
 });
 
 productRouter.get("/:id", async (req, res) => {
+  obtenerAPI()
   const id = parseInt(req.params.id);
   const productos = new DaoProductos();
   const productByID = await productos.getProductByID(id);
@@ -29,6 +42,7 @@ productRouter.get("/:id", async (req, res) => {
 });
 
 productRouter.post("/", middlewareAutorizacion, async (req, res) => {
+  obtenerAPI()
   const productos = new DaoProductos();
   const product = req.body;
   const newProduct = await productos.addProduct(product);
@@ -36,17 +50,18 @@ productRouter.post("/", middlewareAutorizacion, async (req, res) => {
 });
 
 productRouter.put("/:id", middlewareAutorizacion, async (req, res) => {
+  obtenerAPI()
   const id = parseInt(req.params.id);
   const product = req.body;
   const productos = new DaoProductos();
   const putProduct = await productos.updateProduct(id, product);
-  console.log(putProduct);
-  if (putProduct.modifiedCount == 1) {
+  if (putProduct) {
     res.send({ mensaje: 'Producto modificado' });
   } else res.status(404).send({ error: "Producto no encontrado" });
 });
 
 productRouter.delete("/:id", middlewareAutorizacion, async (req, res) => {
+  obtenerAPI()
   const id = parseInt(req.params.id);
   const productos = new DaoProductos();
   const deleted = await productos.deleteProduct(id);

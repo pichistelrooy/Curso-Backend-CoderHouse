@@ -27,6 +27,7 @@ class ContenedorMongoDB {
    */
   async getAll(schema, collection) {
     try {
+      console.log("USSANDO MONGODB");
       const Collection = mongoose.model(collection, schema);
       return await Collection.find();
     } catch (error) {

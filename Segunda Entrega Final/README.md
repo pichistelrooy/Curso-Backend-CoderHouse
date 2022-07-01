@@ -49,4 +49,9 @@
   }
 * delete("/:cart_id/productos/:product_id") -- Elimina un producto de un carrito, ambos por su ID
 
+
+## .ENV
+*Descomentar la linea que desea usar para su API(memoria, Filedata, Mongo o Firebase)
+
+
 # Testeado con Postman

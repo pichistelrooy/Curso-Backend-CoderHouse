@@ -58,12 +58,17 @@ class ProductoDaoMongoDB {
 
   async updateProduct(id, product) {
     const mongo = new ContenedorMongoDB();
-    return await mongo.UpdateProductById(
+    const res = await mongo.UpdateProductById(
       productoSchema,
       "producto",
       id,
       product
     );
+    if(res.modifiedCount > 0){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   async deleteProduct(id) {

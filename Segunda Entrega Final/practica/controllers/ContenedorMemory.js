@@ -21,6 +21,7 @@ class ContenedorMemory {
    */
   async getAllCarts() {
     try {
+      console.log("USSANDO MEMORY");
       return listaCarritos;
     } catch (error) {
       throw error;
