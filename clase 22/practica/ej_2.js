@@ -19,5 +19,7 @@ const normalizado = norm.normalize(articulos, articleSchema);
 const largoNormalizado = JSON.stringify(normalizado).length;
 const largoSinNormalizar = JSON.stringify(articulos).length;
 
+print(normalizado);
+
 console.log('Largo normalizado: ', largoNormalizado);
 console.log('Largo sin normalizar: ', largoSinNormalizar);

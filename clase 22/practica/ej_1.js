@@ -10,6 +10,8 @@ const empleadoSchema = new norm.schema.Entity('empleados', {
 });
 
 const normalizado = norm.normalize(empleados, [ empleadoSchema ]);
-// print(normalizado);
+console.log('normalizado');
+print(normalizado);
 const desnormalizado = norm.denormalize(normalizado.result, [ empleadoSchema ], normalizado.entities);
+console.log('desnormalizado');
 print(desnormalizado);

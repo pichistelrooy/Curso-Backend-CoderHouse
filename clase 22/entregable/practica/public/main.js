@@ -1,30 +1,19 @@
 const socket = io();
 
-const schemaAuthor = new normalizr.schema.Entity("author", {
-  idAttribute: "_id",
-});
-const schemaMessage = new normalizr.schema.Entity(
-  "message",
-  {
-    author: schemaAuthor,
-  },
-  { idAttribute: "_id" }
-);
-
 const enviarMensaje = () => {
   const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
+  const text = document.getElementById("message").value;
   const date = String(
     new Date().toDateString() + " " + new Date().toLocaleTimeString()
   );
   const nombre = document.getElementById("nombre").value;
   const apellido = document.getElementById("apellido").value;
-  const edad = document.getElementById("edad").value;
-  const alias = document.getElementById("alias").value;
-  const avatar = document.getElementById("avatar").value;
+  const edad = 32;
+  const alias = 'Juancito';
+  const avatar = 'asdadasdasdasdasdas'
   const mensaje = {
     email,
-    message,
+    text,
     date,
     nombre,
     apellido,
@@ -35,6 +24,8 @@ const enviarMensaje = () => {
   socket.emit("new_message", mensaje);
   document.getElementById("email").value = "";
   document.getElementById("message").value = "";
+  document.getElementById("nombre").value = "";
+  document.getElementById("apellido").value = "";
   return false;
 };
 
@@ -56,17 +47,6 @@ const cargarProducto = () => {
   return false;
 };
 
-const crearEtiquetasMensaje = (mensaje) => {
-  const { email, message, date } = mensaje;
-  return `
-  <div>
-    <strong style='color:blue'>${email}</strong>
-    <p style='color:brown'>${message}</p>
-    <i style='color:green'>${date}</i>
-  </div>
-  `;
-};
-
 const crearEtiquetasProductos = (producto) => {
   const { id, title, price, thumbnail } = producto;
   return `
@@ -81,25 +61,37 @@ const crearEtiquetasProductos = (producto) => {
 };
 
 const agregarMensajes = (mensajes) => {
-  console.log("hola");
-  console.log(mensajes);
-  //normalizar(mensajes);
-  //console.log(normalizr.denormalize(mensajes, messagesListSchema, mensajes.entities));
-  const denormalizedMessages = normalizr.denormalize(
-    mensajes,
-    messagesListSchema,
-    mensajes.entities
-  );
-  console.log("denormalize");
-  console.log(denormalizedMessages);
+
+  const authorSchema = new normalizr.schema.Entity('authors', {}, {idAttribute: 'email'});
+  const messageSchema = new normalizr.schema.Entity('messages', {author: authorSchema}, {idAttribute: '_id'});
+  const messagesSchema = new normalizr.schema.Entity('total', {
+    messages: [ messageSchema ]
+  });  
+  
+  const denormalizedMessages = normalizr.denormalize(mensajes[0].result, messagesSchema, mensajes[0].entities);
   const messages = denormalizedMessages.messages;
-  const mensajesFinal = messages
-    .map((message) => createTagMessage(message))
+  const finalMessage = messages
+    .map((message) => crearEtiquetasMensaje(message))
     .join(" ");
-  document.getElementById("messages").innerHTML = mensajesFinal;
-  //createTagCompressionPercentage(mensajes, denormalizedMessages);
-  /* const mensajesFinal = mensajes.map(mensaje => crearEtiquetasMensaje(mensaje)).join(" ");
-  document.getElementById("messages").innerHTML = mensajesFinal;*/
+  document.getElementById("messages").innerHTML = finalMessage;  
+
+   //Compression
+   const uncompressed = JSON.stringify(mensajes).length;
+   const compressed = JSON.stringify(denormalizedMessages).length;
+   const percCompression = Math.round(compressed*100/uncompressed);
+   console.log(percCompression)
+   document.getElementById("compres").innerHTML = 'Centro de Mensajes: compresion ' + percCompression + '%';
+};
+
+const crearEtiquetasMensaje = (mensaje) => {
+  const { date, author, text } = mensaje;
+  return `
+  <div>
+    <strong style='color:blue'>${author.email}(${author.nombre} ${author.apellido})</strong>
+    <p style='color:brown'>${text}</p>
+    <i style='color:green'>${date}</i>
+  </div>
+  `;
 };
 
 const agregarProductos = (productos) => {
@@ -121,35 +113,5 @@ const agregarProductos = (productos) => {
   document.getElementById("products").innerHTML = productosFinal;
 };
 
-/*const normalizar = (mensajes) => {
-  const authorSchema = new normalizr.schema.Entity("author");
-  const textSchema = new normalizr.schema.Entity("text");
-  const messageSchema = new normalizr.schema.Entity("message", {
-    author: authorSchema,
-    text: textSchema,
-  });
-
-  const normalizado = normalizr.normalize(mensajes, [messageSchema]);
-  console.log(normalizado);
-  const desnormalizado = normalizr.denormalize(
-    normalizado.result,
-    [messageSchema],
-    normalizado.entities
-  );
-  console.log(normalizado);
-};*/
-
-socket.on("messages", (messages) => {
-  console.log(messages);
- /* const desnormalizado = normalizr.denormalize(
-    messages.result,
-    [schemaMessage],
-    messages.entities
-  );
-  console.log('legoo!!');
-  console.log(desnormalizado);
-  agregarMensajes(desnormalizado);*/
-});
-
-//socket.on("messages", (messages) => agregarMensajes(messages));
+socket.on("messages", (normalizedMessages) => agregarMensajes(normalizedMessages));
 socket.on("products", (products) => agregarProductos(products));

@@ -2,6 +2,7 @@ const empresa = [
   {
      "id":1,
      "nombre":"Juan",
+     "apellido":"perez",
      "gerente":{
         "id":1,
         "nombre":"Carlos"
@@ -14,6 +15,7 @@ const empresa = [
   {
      "id":2,
      "nombre":"Pedro",
+     "apellido":"qweqe",
      "gerente":{
         "id":1,
         "nombre":"Carlos"
@@ -26,6 +28,7 @@ const empresa = [
   {
      "id":3,
      "nombre":"Quique",
+     "apellido":"asdasd",
      "gerente":{
         "id":2,
         "nombre":"Vanesa"

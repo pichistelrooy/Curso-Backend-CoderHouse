@@ -35,14 +35,11 @@ class mongoDB {
     let message = new Message(fechaActual, "hola como estas?", author);
 
     const Collection = mongoose.model("message", messageSchema);
-    console.log("borrando datos");
-    //console.log(await Collection.deleteMany({ email: "marcos@gmail.com" }));
-    //console.log(await Collection.deleteMany({ email: "pepe@gmail.com" }));
+    console.log("borrando base mongo e inicializando data");  
     await Collection.deleteMany({ email: "marcos@gmail.com" });
     await Collection.deleteMany({ email: "pepe@gmail.com" });
 
-    let colsave = new Collection(message);
-    //console.log(await colsave.save());
+    let colsave = new Collection(message);    
     await colsave.save();
 
     author = new Author(
@@ -55,8 +52,7 @@ class mongoDB {
     );
     message = new Message(fechaActual, "bien, vos??", author);
 
-    colsave = new Collection(message);
-    //console.log(await colsave.save());
+    colsave = new Collection(message);    
     await colsave.save();
 
     author = new Author(
@@ -69,8 +65,7 @@ class mongoDB {
     );
     message = new Message(fechaActual, "mal, tengo un problema", author);  
 
-    colsave = new Collection(message);
-    //console.log(await colsave.save());
+    colsave = new Collection(message);    
     await colsave.save();
   };
 
@@ -78,11 +73,14 @@ class mongoDB {
    * @param {object} message
    * @returns none
    */
-  async insertMessage(message) {
+  async insertMessage(data) {
     try {
-      /*await knex("messages").insert([
-        { email: message.email, message: message.message, date: message.date },
-      ]);*/
+      const fechaActual = moment();  
+      const Collection = mongoose.model("message", messageSchema);
+      const author = new Author(data.email, data.nombre, data.apellido, data.edad, data.alias, data.avatar);
+      const message = new Message(fechaActual, data.text, author);  
+      const colsave = new Collection(message);    
+      await colsave.save();
     } catch (error) {
       throw error;
     }
@@ -96,7 +94,7 @@ class mongoDB {
   async SelectMessages() {
     try {
       const Collection = mongoose.model("message", messageSchema);
-      return Collection.find();
+      return Collection.find().lean();
     } catch (error) {
       throw error;
     }

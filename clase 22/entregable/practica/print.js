@@ -1,7 +1,8 @@
-import util from "util"
+const util = require('util');
 
-const print = (objeto) => {
-  console.log(util.inspect(objeto,false,12,true))
+
+function print(objeto) {
+    console.log(util.inspect(objeto,false,12,true))
 }
 
-export default print;
+module.exports = print;

@@ -36,7 +36,7 @@
   <body>
     <form onsubmit="return enviarMensaje()">
       <div class="card">
-        <div class="card-header text-center" style="background-color: #f8f9c5">
+        <div id='compres' class="card-header text-center" style="background-color: #f8f9c5">
           Centro de Mensajes
         </div>
         <div id="messages"></div>
@@ -44,6 +44,14 @@
           <div class="col-4">
             <label for="email" class="form-label">Email</label>
             <input type="text" name="email" id="email" required class="form-control"/>
+          </div>
+          <div class="col-4">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" name="nombre" id="nombre" required class="form-control"/>
+          </div>
+          <div class="col-4">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" name="apellido" id="apellido" required class="form-control"/>
           </div>
           <div class="col-6">
             <label for="message" class="form-label">Message</label>
