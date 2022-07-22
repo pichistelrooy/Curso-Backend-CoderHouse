@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Register</title>
+</head>
+<body>
+    <div class="container text-center mt-2 border shadow-lg p-3 mb-5 bg-body rounded">
+        <div class="card">
+            <div class="card-header text-center" style="background-color: #949632">
+                Register
+            </div>
+            <div class="card-body" style="background-color: #ffcef8">
+                <form method="post" onsubmit="">
+                    <div class="form-outline mb-4 ">
+                        <input class="form-control" type="text" id="email" name="email" placeholder="Email" required />
+                    </div>
+                    <div class="form-outline mb-4 ">
+                        <input class="form-control" type="text" id="pass" name="pass" placeholder="password" required />
+                    </div>
+                    <button type="submit" value="register" class="btn btn-dark">Register</button>
+                    <br>
+                    <a href="/login" class="btn btn-primary my-1">Login</a>
+                </form>
+            </div>    
+        </div>   
+    </div>
+</body>

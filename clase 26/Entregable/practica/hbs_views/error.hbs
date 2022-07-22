@@ -1,0 +1,11 @@
+{{#if registro}}
+<h2 class="regUser">Usuario registrado</h2>
+{{else}}
+<h2 class="regUser">Usuario o Clave incorrecto</h2>
+{{/if}}
+<form action="/login" method="get">
+<input type="submit" value="ingresar">
+</form>
+<form action="/registro" method="get">
+<input type="submit" value="registro">
+</form>
