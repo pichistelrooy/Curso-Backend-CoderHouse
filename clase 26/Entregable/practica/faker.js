@@ -1,6 +1,6 @@
-const { faker } = require('@faker-js/faker');
-const express = require("express");
-const routerFaker = express.Router();
+import { faker } from '@faker-js/faker';
+import { Router, json, urlencoded } from "express";
+const routerFaker = Router();
 faker.locale = 'es';
 
 function addFakerProduct() {
@@ -12,8 +12,8 @@ function addFakerProduct() {
   };
 }
 
-routerFaker.use(express.json());
-routerFaker.use(express.urlencoded({ extended: true }));
+routerFaker.use(json());
+routerFaker.use(urlencoded({ extended: true }));
 
 routerFaker.get("/", async (req, res) => {
   try {
@@ -29,4 +29,4 @@ routerFaker.get("/", async (req, res) => {
   }
 });
 
-module.exports = routerFaker;
+export default routerFaker;

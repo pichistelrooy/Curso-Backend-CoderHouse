@@ -1,8 +1,9 @@
-const mongoose = require("mongoose");
-const Message = require("./../model/message");
-const Author = require("./../model/author");
-const User = require("./../model/user");
-const moment = require("moment");
+import mongoose from "mongoose";
+import Message from "./../model/message.js";
+import Author from "./../model/author.js";
+import User from "./../model/user.js";
+import moment from "moment";
+import bcrypt from "bcrypt";
 
 const messageSchema = new mongoose.Schema({
   date: { type: Date, required: true },
@@ -73,11 +74,10 @@ class mongoDB {
 
     colsave = new Collection(message);
     await colsave.save();
-
-    let user = new User("picho_xeneize@hotmail.com", "123456");
+    const passwordBcrypt = bcrypt.hashSync("123456", bcrypt.genSaltSync(10));
+    let user = new User("picho_xeneize@hotmail.com", passwordBcrypt);
 
     const CollectionUser = mongoose.model("user", userSchema);
-    console.log("creando esquema user");
     await CollectionUser.deleteMany({ email: "picho_xeneize@hotmail.com" });
     let colsaveuser = new CollectionUser(user);
     await colsaveuser.save();
@@ -129,9 +129,21 @@ class mongoDB {
   async login(user) {
     try {
       const Collection = mongoose.model("user", userSchema);
-      console.log('llego al mongo');
-      console.log(user.email);
-      return Collection.find({email:user.email}).lean();
+      return Collection.find({ email: user.email }).lean();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * Return a user if exist
+   * @params email
+   * @returns user
+   */
+  async find(email) {
+    try {
+      const Collection = mongoose.model("user", userSchema);
+      return Collection.find({ email: email }).lean();
     } catch (error) {
       throw error;
     }
@@ -142,15 +154,15 @@ class mongoDB {
    * @params email & password
    * @returns OK
    */
-   async register(user) {
+  async register(user) {
     try {
       const Collection = mongoose.model("user", userSchema);
       const colsave = new Collection(user);
-      await colsave.save();      
+      await colsave.save();
     } catch (error) {
       throw error;
     }
   }
 }
 
-module.exports = mongoDB;
+export default mongoDB;

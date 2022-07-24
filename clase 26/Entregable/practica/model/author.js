@@ -8,4 +8,5 @@ class Author {
     this.avatar = avatar;
   }
 }
-module.exports = Author;
+
+export default Author;

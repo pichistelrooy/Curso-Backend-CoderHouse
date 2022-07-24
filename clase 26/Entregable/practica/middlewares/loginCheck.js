@@ -5,4 +5,5 @@ const loginCheck = ( req, res, next )=> {
     return next();
   }
 }
-module.exports = loginCheck;
+
+export default loginCheck;

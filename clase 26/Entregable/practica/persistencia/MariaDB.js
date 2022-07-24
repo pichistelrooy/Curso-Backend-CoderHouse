@@ -1,4 +1,4 @@
-const Knex = require('knex').default;
+import Knex from 'knex';
 var knex = null;
 
 class MariaDB {
@@ -55,4 +55,4 @@ class MariaDB {
   }
 }
 
-module.exports = MariaDB;
+export default MariaDB;

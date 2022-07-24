@@ -9,6 +9,7 @@
   },
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.1.3",

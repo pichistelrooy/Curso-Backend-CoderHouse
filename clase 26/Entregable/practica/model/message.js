@@ -5,4 +5,5 @@ class Message {
     this.author = author;
   }
 }
-module.exports = Message;
+
+export default Message;

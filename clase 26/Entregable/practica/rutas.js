@@ -1,25 +1,14 @@
-const getlogin = (req, res) => {
-  console.log('bienvenido');
-  res.render("login", {});
-};
-
 const postlogin = (req, res) => {
-  console.log('logueado');
-  //res.send("Bienvenido!");
+  console.log("logueado");
   res.redirect("/register");
 };
 
-const getErrorLogin = (req, res)=>{
-  res.render('error')
+const getErrorLogin = (req, res) => {
+  res.render("errorLogin");
 };
 
-const register = (req, res) => {
-  res.send("Registrado Correctamente!");
+const getErrorRegister = (req, res) => {
+  res.render("errorRegister");
 };
 
-module.exports = {
-  getlogin,
-  register,
-  getErrorLogin,
-  postlogin
-};
+export default { postlogin, getErrorLogin, getErrorRegister };
