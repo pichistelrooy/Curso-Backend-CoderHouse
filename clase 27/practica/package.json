@@ -1,0 +1,19 @@
+{
+  "name": "clase-27",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "minimist": "^1.2.6",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "NODE_ENV=richard MENSAJE=hola node entorno.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
