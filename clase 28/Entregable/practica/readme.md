@@ -1,6 +1,6 @@
-# **Entregable NUESTRA PRIMERA BASE DE DATOS**
+# **Entregable Child Process**
 
-## MariaDB y SqLite3 📦
+## MariaDB, SqLite3, MongoDB 📦
 
-###### Cada manjeo de BD se encuentra discriminado cada uno en su archivo
-###### En cada archivo, se ejecutan al inicio los scripts de creacio nde tablas, ademas de unos insert simulados para que la app arranque con contenido
+###### Se creo ruta /info para mostrar datos el process
+###### Se agrego un fork process para mostrar que no se bloquea el resto de la api al ejecutar un proceso pesado
