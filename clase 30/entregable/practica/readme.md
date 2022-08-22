@@ -24,3 +24,6 @@ Ejecutar el servidor (con los parámetros adecuados) utilizando Forever, verific
 pm2 start ./miservidor.js -- --port=8080 --modo=fork
 pm2 start ./miservidor.js -- --port=8081 --modo=cluster
 pm2 start ./miservidor.js -- --port=8082 --modo=fork
+
+
+EN EL ARCHIVO SERVIDOR.JS SE ENCUENTRA LAS PRUEBAS REALIZADAS CON PM2, FORK, CLUSTER, FOREVER
